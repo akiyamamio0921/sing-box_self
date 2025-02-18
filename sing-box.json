@@ -1,7 +1,7 @@
 {
     "dns": {
         "servers": [
-            {"tag": "cloudflare","type": "https","server": "1.1.1.1","detour": "Proxy"},
+            {"tag": "google","type": "https","server": "8.8.8.8","detour": "Proxy"},
             {"tag": "ali","type": "https","server": "223.6.6.6","detour": "direct"},
             {"tag": "remote_fakeip","type": "fakeip","inet4_range": "10.19.0.0/16","inet6_range": "fc00::/18"}
         ],
@@ -11,7 +11,7 @@
             {"query_type": ["A","AAAA"],"action": "route","server": "remote_fakeip","rewrite_ttl": 1},
             {"rule_set": ["GeoSite@CN","Apple"],"action": "route","server": "ali"}
         ],
-        "final": "cloudflare",
+        "final": "google",
         "independent_cache": true,
         "strategy": "ipv4_only"
     },
@@ -66,6 +66,8 @@
         "rules": [
             {"action": "sniff","sniffer": ["http","tls","quic","dns"],"timeout": "500ms"},
             {"type": "logical","mode": "or","rules": [{"port": 53},{"protocol": "dns"}],"action": "hijack-dns"},
+            {"type": "logical","mode": "and","rules": [{"domain_keyword": "region1"},{"domain_keyword": "argotunnel"}],"action": "route","outbound": "direct"},
+            {"type": "logical","mode": "and","rules": [{"domain_keyword": "h2"},{"domain_keyword": "cftunnel"}],"action": "route","outbound": "direct"},
             {"clash_mode": "全局直连","action": "route","outbound": "direct"},
             {"clash_mode": "全局代理","action": "route","outbound": "Proxy"},
             {"rule_set": ["Ads"],"action": "reject"},
