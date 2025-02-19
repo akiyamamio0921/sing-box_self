@@ -68,7 +68,7 @@
             {"type": "logical","mode": "or","rules": [{"port": 53},{"protocol": "dns"}],"action": "hijack-dns"},
             {"type": "logical","mode": "and","rules": [{"domain_keyword": "region1"},{"domain_keyword": "argotunnel"}],"action": "route","outbound": "direct"},
             {"type": "logical","mode": "and","rules": [{"domain_keyword": "h2"},{"domain_keyword": "cftunnel"}],"action": "route","outbound": "direct"},
-            {"type": "logical","mode": "or","rules": [{"domain_keyword": "qq"},{"domain_keyword": "wechat"}],"action": "route","outbound": "direct"},
+            {"type": "logical","mode": "or","rules": [{"domain_keyword": "qq"},{"domain_keyword": "wechat"},{"domain_keyword": "weixin"}],"action": "route","outbound": "direct"},
             {"clash_mode": "全局直连","action": "route","outbound": "direct"},
             {"clash_mode": "全局代理","action": "route","outbound": "Proxy"},
             {"rule_set": ["Ads"],"action": "reject"},
