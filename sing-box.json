@@ -13,7 +13,7 @@
         ],
         "final":"ali",
         "independent_cache":true,
-        "strategy":"ipv4_only"
+        "strategy":"prefer_ipv4"
     },
     "outbounds":[
         {"tag":"direct","type":"direct"},
