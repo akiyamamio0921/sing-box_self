@@ -3,20 +3,22 @@
         "servers":[
             {"tag":"cloudflare","type":"https","server":"1.1.1.1","detour":"Proxy"},
             {"tag":"ali","type":"https","server":"223.5.5.5","detour":"direct"},
-            {"tag":"remote_fakeip","type":"fakeip","inet4_range":"10.19.0.0/16","inet6_range":"fc00::/18"}
+{"tag": "remote_fakeip","address": "fakeip"}
         ],
         "rules":[
+            {"outbound": "any","server": "ali"},
             {"clash_mode":"全局直连","action":"route","server":"ali"},
             {"clash_mode":"全局代理","action":"route","server":"remote_fakeip"},
+            {"query_type": "HTTPS","action": "reject"},
             {"query_type":["A","AAAA"],"action":"route","server":"remote_fakeip","rewrite_ttl":1},
-            {"rule_set":["GeoSite@CN","Apple"],"action":"route","server":"ali"}
+            {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"}
         ],
         "final":"ali",
-        "independent_cache":true,
-        "strategy":"prefer_ipv4"
+        "fakeip": {"enabled": true,"inet4_range": "10.19.0.0/16","inet6_range": "fc00::/18"},
+        "independent_cache":true
     },
     "outbounds":[
-        {"tag":"direct","type":"direct"},
+        {"tag": "direct","type": "direct"},
         {"tag":"Proxy","type":"selector","outbounds":["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default":"direct","interrupt_exist_connections":true},
         {"tag":"AI","type":"selector","outbounds":["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default":"Proxy","interrupt_exist_connections":true},
         {"tag":"Google","type":"selector","outbounds":["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default":"Proxy","interrupt_exist_connections":true},
@@ -59,8 +61,8 @@
             {"tag":"PrimeVideo","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/PrimeVideo.srs","download_detour":"direct"},
             {"tag":"HBO","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/HBO.srs","download_detour":"direct"},
             {"tag":"TikTok","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/TikTok.srs","download_detour":"direct"},
-            {"tag":"GeoSite@CN","type":"remote","format":"binary","url":"https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs","download_detour":"direct"},
-            {"tag":"GeoIP@CN","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs","download_detour":"direct"},
+            {"tag":"ChinaDomain","type":"remote","format":"binary","url":"https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs","download_detour":"direct"},
+            {"tag":"China IP","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs","download_detour":"direct"},
             {"tag":"geolocation-!cn","type":"remote","format":"binary","url":"https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs","download_detour":"direct"}
         ],
         "rules":[
