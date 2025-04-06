@@ -92,7 +92,7 @@
             {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
             {"rule_set":["geolocation-!cn"],"action":"route","outbound":"Proxy"},
             {"action":"resolve"},
-            {"rule_set": ["GeoSite@CN","GeoIP@CN","Apple"],"action":"route","outbound":"direct"},
+            {"rule_set": ["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"},
             {"ip_is_private":true,"outbound":"direct"}
         ],
         "find_process":false,
