@@ -3,7 +3,7 @@
         "servers":[
             {"tag":"cloudflare","type":"https","server":"1.1.1.1","detour":"Proxy"},
             {"tag":"ali","type":"https","server":"223.5.5.5","detour":"direct"},
-{"tag": "remote_fakeip","address": "fakeip"}
+              {"tag": "remote_fakeip","address": "fakeip"}
         ],
         "rules":[
             {"outbound": "any","server": "ali"},
@@ -13,7 +13,7 @@
             {"query_type":["A","AAAA"],"action":"route","server":"remote_fakeip","rewrite_ttl":1},
             {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"}
         ],
-        "final":"ali",
+        "final":"cloudflare",
         "fakeip": {"enabled": true,"inet4_range": "10.19.0.0/16","inet6_range": "fc00::/18"},
         "independent_cache":true
     },
