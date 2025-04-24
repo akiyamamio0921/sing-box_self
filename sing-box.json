@@ -3,10 +3,10 @@
         "servers":[
             {"tag":"cloudflare","type":"https","server":"1.1.1.1","detour":"Proxy"},
             {"tag":"ali","type":"https","server":"223.5.5.5","detour":"direct"},
-            {"tag": "remote_fakeip","address": "fakeip"}
+            {"tag":"remote_fakeip","address":"fakeip"}
         ],
         "rules":[
-            {"outbound": "any","server": "ali"},
+            {"outbound":"any","server":"ali"},
             {"clash_mode":"全局直连","action":"route","server":"ali"},
             {"clash_mode":"全局代理","action":"route","server":"remote_fakeip"},
             {"query_type": "HTTPS","action": "reject"},
@@ -18,7 +18,7 @@
         "independent_cache":true
     },
     "outbounds":[
-        {"tag": "direct","type": "direct"},
+        {"tag":"direct","type":"direct"},
         {"tag":"Proxy","type":"selector","outbounds":["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default":"direct","interrupt_exist_connections":true},
         {"tag":"AI","type":"selector","outbounds":["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default":"Proxy","interrupt_exist_connections":true},
         {"tag":"Google","type":"selector","outbounds":["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default":"Proxy","interrupt_exist_connections":true},
