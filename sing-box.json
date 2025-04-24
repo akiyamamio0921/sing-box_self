@@ -2,7 +2,7 @@
     "dns":{
         "servers":[
             {"tag":"cloudflare","type":"https","server":"1.1.1.1","detour":"Proxy"},
-            {"tag":"ali","type":"https","server":"223.5.5.5","detour":"direct"},
+            {"tag":"ali","type":"https","server":"223.5.5.5","detour":"Final"},
             {"tag":"remote_fakeip","address":"fakeip"}
         ],
         "rules":[
