@@ -116,8 +116,7 @@
             "external_ui":"/usr/share/sing-box/ui/zashboard",
             "secret":"^_^Sin(7!a)*2|>_<|",
             "external_ui_download_url":"https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-            "external_ui_download_detour":"Proxy",
-            "external_ui_update_interval": "1d"
+            "external_ui_download_detour":"Proxy"
         }
     },
     "inbounds":[
