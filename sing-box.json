@@ -113,7 +113,7 @@
         "clash_api":{
             "default_mode":"规则模式",
             "external_controller":":9091",
-            "external_ui":"/usr/share/sing-box/ui/zashboard",
+            "external_ui":"/usr/share/sing-box/ui",
             "secret":"^_^Sin(7!a)*2|>_<|",
             "external_ui_download_url":"https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
             "external_ui_download_detour":"Proxy"
