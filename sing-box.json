@@ -7,8 +7,8 @@
         ],
         "rules":[
             {"outbound":"any","server":"ali"},
-            {"clash_mode":"全局直连","action":"route","server":"ali"},
-            {"clash_mode":"全局代理","action":"route","server":"remote_fakeip"},
+            {"clash_mode":"Direct","action":"route","server":"ali"},
+            {"clash_mode":"Proxy","action":"route","server":"remote_fakeip"},
             {"query_type": "HTTPS","action": "reject"},
             {"query_type":["A","AAAA"],"action":"route","server":"remote_fakeip","rewrite_ttl":1},
             {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"}
@@ -81,8 +81,8 @@
             {"type":"logical","mode":"or","rules":[{"type":"logical","mode":"and","rules":[{"network":"tcp"},{"port":[22,5228]}]},{"type":"logical","mode":"and","rules":[{"network":"udp"},{"port":123}]}],"action":"route","outbound":"direct"},
             {"process_name":["tailscaled"],"action":"route","outbound":"direct"},
             {"type":"logical","mode":"or","rules":[{"domain_keyword":"cftunnel"},{"domain_keyword":"qq"},{"domain_keyword":"wechat"},{"domain_keyword":"weixin"},{"domain_keyword":"kwai"},{"domain_keyword":"sslip"},{"domain_keyword":"tailscale"},{"domain_keyword":"derp"},{"domain_keyword":"controlplane"}],"action":"route","outbound":"direct"},
-            {"clash_mode":"全局直连","action":"route","outbound":"direct"},
-            {"clash_mode":"全局代理","action":"route","outbound":"Proxy"},
+            {"clash_mode":"Direct","action":"route","outbound":"direct"},
+            {"clash_mode":"Proxy","action":"route","outbound":"Proxy"},
             {"rule_set":["Ads"],"action":"reject"},
             {"rule_set":["AI"],"action":"route","outbound":"AI"},
             {"rule_set":["YouTube","Google"],"action":"route","outbound":"Google"},
@@ -114,7 +114,7 @@
             "store_fakeip":true
         },
         "clash_api":{
-            "default_mode":"规则模式",
+            "default_mode":"Rule",
             "external_controller":":9091",
             "external_ui":"/usr/share/sing-box/ui",
             "secret":"^_^Sin(7!a)*2|>_<|",
