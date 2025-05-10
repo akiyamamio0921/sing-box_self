@@ -96,7 +96,7 @@
             {"rule_set": ["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"},
             {"ip_is_private":true,"outbound":"direct"}
         ],
-        "find_process":false,
+        "find_process":true,
         "auto_detect_interface":true,
         "final":"Final"
     },
