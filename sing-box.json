@@ -99,7 +99,7 @@
             {"ip_is_private":true,"outbound":"direct"}
         ],
         "find_process":true,
-        "default_interface":"br-lan",
+        "auto_detect_interface":true,
         "final":"Final"
     },
     "log":{
