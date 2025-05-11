@@ -99,7 +99,7 @@
             {"ip_is_private":true,"outbound":"direct"}
         ],
         "find_process":true,
-        "auto_detect_interface":true,
+        "default_interface":"br-lan",
         "final":"Final"
     },
     "log":{
@@ -131,6 +131,7 @@
         },
         {
             "type":"tun",
+            "interface_name": "sing-box0",
             "address":[
                 "172.18.0.1/30",
                 "fdfe:dcba:9876::1/126"
