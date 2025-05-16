@@ -67,7 +67,8 @@
             {"tag":"geolocation-!cn","type":"remote","format":"binary","url":"https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs","download_detour":"direct"}
         ],
         "rules":[
-            {"action":"sniff","sniffer":["http","tls","dns","quic"],"timeout":"500ms"},
+            {"inbound":["tun","mixed"],"action":"resolve","strategy":"prefer_ipv4"},
+            {"inbound":["tun","mixed"],"action":"sniff","sniffer":["http","tls","dns","quic"],"timeout":"500ms"},
             {"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},
             {"protocol":["quic"],"action":"reject","outbound":"reject"},
             {"type":"logical","mode":"and","rules":[{"port":443},{"network":"udp"}],"action":"reject","outbound":"reject"},
@@ -94,9 +95,8 @@
             {"rule_set":["Bahamut","Netflix","Disney","PrimeVideo","HBO","TikTok"],"action":"route","outbound":"ProxyMedia"},
             {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
             {"rule_set":["geolocation-!cn"],"action":"route","outbound":"Proxy"},
-            {"action":"resolve"},
             {"rule_set": ["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"},
-            {"ip_is_private":true,"outbound":"direct"}
+            {"ip_is_private":true,"action":"route","outbound":"direct"}
         ],
         "find_process":true,
         "auto_detect_interface":true,
