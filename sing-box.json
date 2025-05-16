@@ -39,7 +39,7 @@
         {"tag":"🇨🇳 Taiwan","type":"urltest","outbounds":[],"url":"http://1.1.1.1/generate_204","interval":"10m","tolerance":0,"interrupt_exist_connections":false}
     ],
     "route":{
-        "default_domain_resolver":{"server":"ali"},
+        "default_domain_resolver":{"server":"ali","rewrite_ttl":3600,"client_subnet":"210.21.4.130"},
         "rule_set":[
             {"tag":"Ads","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_SukkaW.srs","download_detour":"direct"},
             {"tag":"Telegram","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Telegram.srs","download_detour":"direct"},
@@ -67,8 +67,8 @@
             {"tag":"geolocation-!cn","type":"remote","format":"binary","url":"https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs","download_detour":"direct"}
         ],
         "rules":[
-            {"inbound":["tun","mixed"],"action":"resolve","strategy":"prefer_ipv4"},
-            {"inbound":["tun","mixed"],"action":"sniff","sniffer":["http","tls","dns","quic"],"timeout":"500ms"},
+            {"inbound":["tun-in","mixed-in"],"action":"resolve","strategy":"prefer_ipv4"},
+            {"inbound":["tun-in","mixed-in"],"action":"sniff","sniffer":["http","tls","dns","quic"],"timeout":"500ms"},
             {"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},
             {"protocol":["quic"],"action":"reject","outbound":"reject"},
             {"type":"logical","mode":"and","rules":[{"port":443},{"network":"udp"}],"action":"reject","outbound":"reject"},
@@ -124,12 +124,14 @@
     },
     "inbounds":[
         {
+            "tag":"mixed-in",
             "type":"mixed",
             "listen":"127.0.0.1",
             "listen_port":7080,
             "set_system_proxy":false
         },
         {
+            "tag":"tun-in",
             "type":"tun",
             "interface_name": "sing-box0",
             "address":[
