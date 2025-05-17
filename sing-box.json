@@ -95,7 +95,7 @@
             {"rule_set":["Bahamut","Netflix","Disney","PrimeVideo","HBO","TikTok"],"action":"route","outbound":"ProxyMedia"},
             {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
             {"rule_set":["geolocation-!cn"],"action":"route","outbound":"Proxy"},
-            {"rule_set": ["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"},
+            {"rule_set":["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"},
             {"ip_is_private":true,"action":"route","outbound":"direct"}
         ],
         "find_process":true,
