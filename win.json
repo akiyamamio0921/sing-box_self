@@ -1,11 +1,13 @@
 {
     "dns":{
         "servers":[
+             {"tag": "hosts","type": "hosts","predefined": {"*.findu.eu.org": "104.18.85.70"}},
             {"tag":"cloudflare","type":"https","server":"1.1.1.1","detour":"Proxy"},
             {"tag":"ali","type":"https","server":"223.5.5.5"},
-            {"tag":"remote_fakeip","address":"fakeip"}
+            {"tag":"remote_fakeip","address":"fakeip"}           
         ],
         "rules":[
+            {"ip_accept_any": true,"server": "hosts"},
             {"outbound":"any","server":"ali"},
             {"clash_mode":"Direct","action":"route","server":"ali"},
             {"clash_mode":"Proxy","action":"route","server":"remote_fakeip"},
