@@ -1,24 +1,21 @@
 {
     "dns":{
         "servers":[
-             {"tag": "hosts","type": "hosts","predefined": {"*.findu.eu.org": "104.18.85.70"}},
+            {"tag": "hosts","type": "hosts","predefined": {"*.findu.eu.org": "104.18.85.70"}},
             {"tag":"cloudflare","type":"https","server":"1.1.1.1","detour":"Proxy"},
             {"tag":"ali","type":"https","server":"223.5.5.5"},
-            {"tag":"remote_fakeip","address":"fakeip"}           
+            {"tag":"fakeip","type":"fakeip","inet4_range":"10.19.0.0/16","inet6_range":"fc00::/18"}           
         ],
         "rules":[
             {"ip_accept_any": true,"server": "hosts"},
-            {"outbound":"any","server":"ali"},
             {"clash_mode":"Direct","action":"route","server":"ali"},
-            {"clash_mode":"Proxy","action":"route","server":"remote_fakeip"},
+            {"clash_mode":"Proxy","action":"route","server":"fakeip"},
             {"query_type": "HTTPS","action": "reject"},
-            {"query_type":["A","AAAA"],"action":"route","server":"remote_fakeip","rewrite_ttl":1},
-            {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"}
+            {"query_type":["A","AAAA"],"action":"route","server":"fakeip","rewrite_ttl":1},
+            {"rule_set":["ChinaDomain"],"action":"route","server":"ali"}
         ],
         "final":"cloudflare",
-        "fakeip": {"enabled": true,"inet4_range": "10.19.0.0/16","inet6_range": "fc00::/18"},
-        "independent_cache":true,
-        "strategy":"prefer_ipv4"
+        "independent_cache":true
     },
     "outbounds":[
         {"tag":"direct","type":"direct"},
@@ -41,7 +38,7 @@
         {"tag":"🇨🇳 Taiwan","type":"urltest","outbounds":[],"url":"http://1.1.1.1/generate_204","interval":"10m","tolerance":0,"interrupt_exist_connections":false}
     ],
     "route":{
-        "default_domain_resolver":{"server":"ali","rewrite_ttl":3600,"client_subnet":"210.21.4.130"},
+        "default_domain_resolver":{"server":"ali"},
         "rule_set":[
             {"tag":"Ads","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_SukkaW.srs","download_detour":"direct"},
             {"tag":"Telegram","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Telegram.srs","download_detour":"direct"},
@@ -65,11 +62,9 @@
             {"tag":"HBO","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/HBO.srs","download_detour":"direct"},
             {"tag":"TikTok","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/TikTok.srs","download_detour":"direct"},
             {"tag":"ChinaDomain","type":"remote","format":"binary","url":"https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs","download_detour":"direct"},
-            {"tag":"ChinaIP","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs","download_detour":"direct"},
-            {"tag":"geolocation-!cn","type":"remote","format":"binary","url":"https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs","download_detour":"direct"}
+            {"tag":"ChinaIP","type":"remote","format":"binary","url":"https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs","download_detour":"direct"}
         ],
         "rules":[
-            {"inbound":["tun-in","mixed-in"],"action":"resolve","strategy":"prefer_ipv4"},
             {"inbound":["tun-in","mixed-in"],"action":"sniff","sniffer":["http","tls","dns","quic"],"timeout":"500ms"},
             {"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},
             {"protocol":["quic"],"action":"reject","outbound":"reject"},
@@ -95,10 +90,9 @@
             {"rule_set":["Emby"],"action":"route","outbound":"Emby"},
             {"rule_set":["Steam","Epic"],"action":"route","outbound":"Game"},
             {"rule_set":["Bahamut","Netflix","Disney","PrimeVideo","HBO","TikTok"],"action":"route","outbound":"ProxyMedia"},
-            {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
-            {"rule_set":["geolocation-!cn"],"action":"route","outbound":"Proxy"},
-            {"rule_set":["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"},
-            {"ip_is_private":true,"action":"route","outbound":"direct"}
+            {"inbound":["tun-in","mixed-in"],"action":"resolve"},
+            {"rule_set":["ChinaDomain","ChinaIP"],"action":"route","outbound":"direct"},
+            {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"}
         ],
         "find_process":true,
         "auto_detect_interface":true,
