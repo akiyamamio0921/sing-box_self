@@ -9,7 +9,7 @@
             {"clash_mode":"Direct","action":"route","server":"ali"},
             {"clash_mode":"Proxy","action":"route","server":"fakeip"},
             {"query_type": "HTTPS","action": "reject"},
-            {"query_type":["A","AAAA"],"action":"route","server":"remote_fakeip","rewrite_ttl":1},
+            {"query_type":["A","AAAA"],"action":"route","server":"fakeip","rewrite_ttl":1},
             {"rule_set":["ChinaDomain"],"action":"route","server":"ali"}
         ],
         "final":"cloudflare",
