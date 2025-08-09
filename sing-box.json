@@ -1,7 +1,7 @@
 {
     "dns":{
         "servers":[
-            {"tag":"cloudflare","type":"https","server":"1.1.1.1","detour":"Proxy"},
+            {"tag":"google","type":"https","server":"8.8.8.8","detour":"Proxy"},
             {"tag":"ali","type":"https","server":"223.5.5.5"},
             {"tag":"fakeip","type":"fakeip","inet4_range": "10.19.0.0/16","inet6_range": "fc00::/18"}
         ],
@@ -12,7 +12,7 @@
             {"query_type":["A","AAAA"],"action":"route","server":"fakeip","rewrite_ttl":1},
             {"rule_set":["ChinaDomain"],"action":"route","server":"ali"}
         ],
-        "final":"cloudflare",
+        "final":"google",
         "independent_cache":true
     },
     "outbounds":[
