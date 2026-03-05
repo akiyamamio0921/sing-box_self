@@ -91,7 +91,9 @@
             {"rule_set":["Bahamut","Netflix","Disney","PrimeVideo","HBO","TikTok"],"action":"route","outbound":"ProxyMedia"},
             {"inbound":["tun-in","mixed-in"],"action":"resolve"},
             {"rule_set":["ChinaDomain","ChinaIP"],"action":"route","outbound":"direct"},
-            {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"}
+            {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
+            {"action": "route","ip_cidr": "192.168.0.0/24","outbound": "direct"},
+            {"action": "route","ip_cidr": "100.0.0.0/8","outbound": "ts-ep"}
         ],
         "find_process":true,
         "auto_detect_interface":true,
