@@ -17,7 +17,7 @@
     },
     "outbounds":[
         {"tag":"direct","type":"direct"},
-           {"tag":"Proxy","type":"selector","outbounds":["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","🇰🇷 Korea","direct"],"default":"direct","interrupt_exist_connections":true},
+        {"tag":"Proxy","type":"selector","outbounds":["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","🇰🇷 Korea","direct"],"default":"direct","interrupt_exist_connections":true},
         {"tag":"AI","type":"selector","outbounds":["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇰🇷 Korea","🇨🇳 Taiwan"],"default":"Proxy","interrupt_exist_connections":true},
         {"tag":"Google","type":"selector","outbounds":["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","🇰🇷 Korea"],"default":"Proxy","interrupt_exist_connections":true},
         {"tag":"Microsoft","type":"selector","outbounds":["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","🇰🇷 Korea","direct"],"default":"Proxy","interrupt_exist_connections":true},
@@ -145,5 +145,17 @@
             "strict_route":true,
             "auto_redirect":true
         }
-    ]
+    ],
+    "endpoints": [{
+      "type": "tailscale",
+      "tag": "ts-ep",
+      "state_directory": "/mnt/mmcblk2p4/myopenwrt/tailscale/files",
+      "auth_key": "tskey-auth-kUkRi3kUYj11CNTRL-YP4QHi7yHA3Awij1YKtN93XBUnb9NTnK",
+      "ephemeral": false,
+      "hostname": "openwrt",
+      "accept_routes": true,
+      "advertise_routes": ["192.168.0.0/24"],
+      "advertise_exit_node": true,
+      "udp_timeout": "5m"
+    }]
 }
