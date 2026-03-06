@@ -81,7 +81,7 @@
             {"clash_mode":"Direct","action":"route","outbound":"direct"},
             {"clash_mode":"Global","action":"route","outbound":"Proxy"},
             {"action": "route","ip_cidr": "192.168.0.0/24","outbound": "direct"},
-            {"action": "route","ip_cidr": "100.0.0.0/8","outbound": "ts-ep"}
+            {"action": "route","ip_cidr": "100.0.0.0/8","outbound": "ts-ep"},
             {"rule_set":["Ads"],"action":"reject"},
             {"rule_set":["AI"],"action":"route","outbound":"AI"},
             {"rule_set":["YouTube","Google"],"action":"route","outbound":"Google"},
