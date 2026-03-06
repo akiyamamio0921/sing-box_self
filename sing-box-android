@@ -80,6 +80,8 @@
             {"type":"logical","mode":"or","rules":[{"domain_keyword":"cftunnel"},{"domain_keyword":"sslip"},{"domain_keyword":"tailscale"}],"action":"route","outbound":"direct"},
             {"clash_mode":"Direct","action":"route","outbound":"direct"},
             {"clash_mode":"Global","action":"route","outbound":"Proxy"},
+            {"action": "route","ip_cidr": "192.168.0.0/24","outbound": "direct"},
+            {"action": "route","ip_cidr": "100.0.0.0/8","outbound": "ts-ep"}
             {"rule_set":["Ads"],"action":"reject"},
             {"rule_set":["AI"],"action":"route","outbound":"AI"},
             {"rule_set":["YouTube","Google"],"action":"route","outbound":"Google"},
@@ -91,9 +93,7 @@
             {"rule_set":["Bahamut","Netflix","Disney","PrimeVideo","HBO","TikTok"],"action":"route","outbound":"ProxyMedia"},
             {"inbound":["tun-in","mixed-in"],"action":"resolve"},
             {"rule_set":["ChinaDomain","ChinaIP"],"action":"route","outbound":"direct"},
-            {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
-            {"action": "route","ip_cidr": "192.168.0.0/24","outbound": "direct"},
-            {"action": "route","ip_cidr": "100.0.0.0/8","outbound": "ts-ep"}
+            {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"}
         ],
         "find_process":true,
         "auto_detect_interface":true,
@@ -161,3 +161,4 @@
       "domain_resolver": "ali"
     }]
 }
+
