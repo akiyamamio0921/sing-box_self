@@ -155,11 +155,13 @@
       "ephemeral": false,
       "hostname": "android",
       "accept_routes": true,
+      "exit_node_allow_lan_access": true,
       "advertise_routes": ["192.168.0.0/24"],
       "advertise_exit_node": false,
       "udp_timeout": "5m",
       "domain_resolver": "ali"
     }]
 }
+
 
 
